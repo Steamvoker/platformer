@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 0.0f;
     public int extraJumpValue;
     private int extraJumps;
+    [HideInInspector]public bool haveKey = false;
 
     public Text hp;
 
@@ -32,14 +33,9 @@ public class PlayerController : MonoBehaviour
         Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         Walk(dir);
-        //Jump();
+        Jump();
         hp.text = playerHP.ToString();
         //Debug.Log(IsGrounded());
-    }
-
-    private void FixedUpdate()
-    {
-        Jump();
     }
 
     void Walk(Vector2 dir)
@@ -54,7 +50,7 @@ public class PlayerController : MonoBehaviour
             extraJumps = extraJumpValue;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumps >= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
         {
             playerBody.velocity = Vector2.up * jumpPower;
             extraJumps--;
