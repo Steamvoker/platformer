@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D boxCollider2D;
 
     public float speed = 0.0f;
+    public int maxHP;
     public int playerHP;
     public float jumpPower = 0.0f;
     public int extraJumpValue;
     private int extraJumps;
     [HideInInspector]public bool haveKey = false;
+    public Animator[] hearts;
+    //public Sprite fullHeart;
 
     public Text hp;
 
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         hp.text = playerHP.ToString();
         //Debug.Log(IsGrounded());
+        HealthController(playerHP, maxHP);
     }
 
     void Walk(Vector2 dir)
@@ -67,5 +71,39 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0.0f, Vector2.down, 0.1f, platformsLayerMask);
         return raycastHit2D.collider != null;
+    }
+
+    void HealthController(int _curHP, int _maxHP)
+    {
+        //if(playerHP > numOfHearts)
+        //{
+        //    playerHP = numOfHearts;
+        //}
+
+        //for (int i = 0; i < hearts.Length; i++)
+        //{
+        //    if (i < numOfHearts)
+        //    {
+        //        hearts[i].enabled = true;
+        //    }
+        //    else
+        //    {
+        //        hearts[i].enabled = false;
+        //    }
+        //}
+
+        int numOfHearts = hearts.Length;
+        float heartStep = _maxHP / numOfHearts;
+        int numOfVisibleHearts = Mathf.CeilToInt(_curHP / heartStep);
+        
+        for(int i = 0; i < numOfVisibleHearts; i++)
+        {
+            hearts[i].SetBool("IsVisible", true);
+        }
+
+        for (int i = numOfVisibleHearts; i < hearts.Length; i++)
+        {
+            hearts[i].SetBool("IsVisible", false);
+        }
     }
 }
