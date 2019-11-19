@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         hp.text = playerHP.ToString();
         //Debug.Log(IsGrounded());
         HealthController(playerHP, maxHP);
+        //Debug.Log(playerHP);
     }
 
     void Walk(Vector2 dir)
