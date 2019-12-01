@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private int extraJumps;
     [HideInInspector]public bool haveKey = false;
     public Animator[] hearts;
+    private bool facingRight = true;
     //public Sprite fullHeart;
 
     public Text hp;
@@ -46,6 +47,22 @@ public class PlayerController : MonoBehaviour
     void Walk(Vector2 dir)
     {
         playerBody.velocity = new Vector2(dir.x * speed, playerBody.velocity.y);
+        if(facingRight == false && dir.x > 0)
+        {
+            Flip();
+        }
+        else if(facingRight && dir.x < 0)
+        {
+            Flip();
+        }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 
     void Jump()
