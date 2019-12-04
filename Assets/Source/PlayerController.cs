@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator[] hearts;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public int points = 0;
+    [SerializeField] private float dashPower = 0.0f;
     //public Sprite fullHeart;
 
     public Text hp;
@@ -39,10 +40,9 @@ public class PlayerController : MonoBehaviour
 
         Walk(dir);
         Jump();
+        //Dash(dir);
         hp.text = playerHP.ToString();
-        //Debug.Log(IsGrounded());
         HealthController(playerHP, maxHP);
-        //Debug.Log(playerHP);
     }
 
     void Walk(Vector2 dir)
@@ -65,6 +65,14 @@ public class PlayerController : MonoBehaviour
         scaler.x *= -1;
         transform.localScale = scaler;
     }
+
+    //void Dash(Vector2 _dir)
+    //{
+    //    if(Input.GetKeyDown(KeyCode.D) && Input.GetKeyDown(KeyCode.LeftShift))
+    //    {
+    //        playerBody.AddForce(_dir, ForceMode2D.Impulse);
+    //    }
+    //}
 
     void Jump()
     {

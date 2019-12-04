@@ -2999,6 +2999,7 @@ MonoBehaviour:
   - {fileID: 1976450603}
   facingRight: 1
   points: 0
+  dashPower: 200
   hp: {fileID: 1896966619}
 --- !u!114 &1031057916
 MonoBehaviour:

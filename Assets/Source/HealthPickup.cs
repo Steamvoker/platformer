@@ -13,13 +13,10 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && playerController.playerHP < playerController.maxHP)
         {
-            while (playerController.playerHP < playerController.maxHP)
-            {
                 playerController.playerHP++;
                 this.gameObject.SetActive(false);
-            }
         }
     }
 }

@@ -13,21 +13,11 @@ public class KeyDoor : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
     }
 
-    private void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (playerController.haveKey == true && Input.GetKeyDown(KeyCode.E))
         {
             door.SetActive(false);
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        triggerEntered = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        triggerEntered = false;
     }
 }

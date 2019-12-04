@@ -26,16 +26,16 @@ public class Damage : MonoBehaviour
             respawn.Invoke("GameOver", 3);
         }
 
-        //if(collision.gameObject.CompareTag("Player"))
-        //{
-        //    if (playerController.facingRight)
-        //    {
-        //        collision.attachedRigidbody.AddForce(-collision.attachedRigidbody.AddForce. * pushback);
-        //    }
-        //    else if(!playerController.facingRight)
-        //    {
-        //        collision.attachedRigidbody.AddForce(collision.attachedRigidbody.velocity.normalized * pushback);
-        //    }
-        //}
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (playerController.facingRight)
+            {
+                collision.attachedRigidbody.AddForce(-collision.attachedRigidbody.velocity.normalized * pushback);
+            }
+            else if (!playerController.facingRight)
+            {
+                collision.attachedRigidbody.AddForce(collision.attachedRigidbody.velocity.normalized * pushback);
+            }
+        }
     }
 }
