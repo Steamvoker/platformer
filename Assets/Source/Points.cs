@@ -5,8 +5,6 @@ using TMPro;
 
 public class Points : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     private PlayerController playerController;
     [SerializeField] private TMP_Text text;
 
@@ -17,10 +15,12 @@ public class Points : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            text.text = "Points: " +  playerController.points.ToString();
+            playerController.points++;
+            text.text = "Points: " + playerController.points.ToString();
             Debug.Log(playerController.points);
+            this.gameObject.SetActive(false);
         }
     }
 }

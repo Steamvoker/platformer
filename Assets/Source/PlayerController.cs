@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private int extraJumps;
     [HideInInspector]public bool haveKey = false;
     public Animator[] hearts;
-    private bool facingRight = true;
+    [HideInInspector] public bool facingRight = true;
     [HideInInspector] public int points = 0;
     //public Sprite fullHeart;
 

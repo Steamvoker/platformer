@@ -9,6 +9,7 @@ public class Damage : MonoBehaviour
     [SerializeField] private GameObject player;
     private Respawn respawn;
     public TMP_Text gameOverText;
+    [SerializeField] private float pushback = 0;
 
     private void Awake()
     {
@@ -24,5 +25,17 @@ public class Damage : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             respawn.Invoke("GameOver", 3);
         }
+
+        //if(collision.gameObject.CompareTag("Player"))
+        //{
+        //    if (playerController.facingRight)
+        //    {
+        //        collision.attachedRigidbody.AddForce(-collision.attachedRigidbody.AddForce. * pushback);
+        //    }
+        //    else if(!playerController.facingRight)
+        //    {
+        //        collision.attachedRigidbody.AddForce(collision.attachedRigidbody.velocity.normalized * pushback);
+        //    }
+        //}
     }
 }
