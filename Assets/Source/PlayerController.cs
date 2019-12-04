@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]public bool haveKey = false;
     public Animator[] hearts;
     private bool facingRight = true;
+    [HideInInspector] public int points = 0;
     //public Sprite fullHeart;
 
     public Text hp;
