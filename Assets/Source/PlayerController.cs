@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator[] hearts;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public int points = 0;
-    [SerializeField] private float dashPower = 0.0f;
+    //[SerializeField] private float dashPower = 0.0f;
     //public Sprite fullHeart;
 
     public Text hp;
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
 
         Walk(dir);
         Jump();
+        GravityFlip();
         //Dash(dir);
         hp.text = playerHP.ToString();
         HealthController(playerHP, maxHP);
@@ -91,6 +92,17 @@ public class PlayerController : MonoBehaviour
         {
             playerBody.velocity = Vector2.up * jumpPower;
             Debug.Log("jump");
+        }
+    }
+
+    void GravityFlip()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {   
+            playerBody.gravityScale *= -1;
+            Vector3 vertScaler = transform.localScale;
+            vertScaler.y *= -1;
+            transform.localScale = vertScaler;
         }
     }
 
