@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator[] hearts;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public int points = 0;
+    private bool isFlipped = false;
     //[SerializeField] private float dashPower = 0.0f;
     //public Sprite fullHeart;
 
@@ -77,22 +78,46 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (IsGrounded())
+        if (isFlipped == false)
         {
-            extraJumps = extraJumpValue;
+            if (IsGrounded())
+            {
+                extraJumps = extraJumpValue;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
+            {
+                playerBody.velocity = Vector2.up * jumpPower;
+                extraJumps--;
+                Debug.Log("Double jump");
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && IsGrounded())
+            {
+                playerBody.velocity = Vector2.up * jumpPower;
+                Debug.Log("jump");
+            }
+        }
+        else if (isFlipped == true)
+        {
+            if (FlippedIsGrounded())
+            {
+                extraJumps = extraJumpValue;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
+            {
+                playerBody.velocity = Vector2.down * jumpPower;
+                extraJumps--;
+                Debug.Log("Double jump");
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && FlippedIsGrounded())
+            {
+                playerBody.velocity = Vector2.down * jumpPower;
+                Debug.Log("jump");
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
-        {
-            playerBody.velocity = Vector2.up * jumpPower;
-            extraJumps--;
-            Debug.Log("Double jump");
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && IsGrounded())
-        {
-            playerBody.velocity = Vector2.up * jumpPower;
-            Debug.Log("jump");
-        }
+
     }
 
     void GravityFlip()
@@ -103,12 +128,19 @@ public class PlayerController : MonoBehaviour
             Vector3 vertScaler = transform.localScale;
             vertScaler.y *= -1;
             transform.localScale = vertScaler;
+            isFlipped = !isFlipped;
         }
     }
 
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0.0f, Vector2.down, 0.1f, platformsLayerMask);
+        return raycastHit2D.collider != null;
+    }
+
+    private bool FlippedIsGrounded()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0.0f, Vector2.up, 0.1f, platformsLayerMask);
         return raycastHit2D.collider != null;
     }
 
