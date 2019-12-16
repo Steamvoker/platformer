@@ -116,13 +116,11 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("jump");
             }
         }
-
-
     }
 
     void GravityFlip()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && (IsGrounded() || FlippedIsGrounded()))
         {   
             playerBody.gravityScale *= -1;
             Vector3 vertScaler = transform.localScale;
@@ -146,23 +144,6 @@ public class PlayerController : MonoBehaviour
 
     void HealthController(int _curHP, int _maxHP)
     {
-        //if(playerHP > numOfHearts)
-        //{
-        //    playerHP = numOfHearts;
-        //}
-
-        //for (int i = 0; i < hearts.Length; i++)
-        //{
-        //    if (i < numOfHearts)
-        //    {
-        //        hearts[i].enabled = true;
-        //    }
-        //    else
-        //    {
-        //        hearts[i].enabled = false;
-        //    }
-        //}
-
         int numOfHearts = hearts.Length;
         float heartStep = _maxHP / numOfHearts;
         int numOfVisibleHearts = Mathf.CeilToInt(_curHP / heartStep);
