@@ -13,7 +13,7 @@ public class SpikeMovement : MonoBehaviour
     void Start()
     {
         spikeTransform = GetComponent<Transform>();
-        spikeTransform.position = new Vector2(35, 0.1f);
+        //spikeTransform.position = new Vector2(35, 0.1f);
         posX = spikeTransform.position.x;
     }
 
