@@ -20,6 +20,6 @@ public class SpikeMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spikeTransform.transform.position = new Vector2(posX + Mathf.PingPong(Time.time, moveLength) * speed, transform.position.y);
+        spikeTransform.transform.position = new Vector2(posX + Mathf.PingPong(Time.time * speed, moveLength), transform.position.y);
     }
 }
