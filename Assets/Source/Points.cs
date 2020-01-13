@@ -7,6 +7,7 @@ public class Points : MonoBehaviour
 {
     private PlayerController playerController;
     [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text winText;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class Points : MonoBehaviour
             text.text = "Points: " + playerController.points.ToString();
             Debug.Log(playerController.points);
             this.gameObject.SetActive(false);
+            winText.text += "\n\n Points collected: " + playerController.points.ToString();
         }
     }
 }
