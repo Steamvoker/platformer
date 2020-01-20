@@ -8,6 +8,7 @@ public class CheckpointChange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if (collision.gameObject.GetComponent<PlayerController>())
         if(collision.gameObject.CompareTag("Player"))
         {
             checkpoint.transform.position = this.transform.position;

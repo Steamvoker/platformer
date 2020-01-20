@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float jumpPower = 0.0f;
     public int extraJumpValue;
     private int extraJumps;
-    [HideInInspector]public bool haveKey = false;
+    [HideInInspector] public bool haveKey = false;
     public Animator[] hearts;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public int points = 0;
@@ -50,11 +50,11 @@ public class PlayerController : MonoBehaviour
     void Walk(Vector2 dir)
     {
         playerBody.velocity = new Vector2(dir.x * speed, playerBody.velocity.y);
-        if(facingRight == false && dir.x > 0)
+        if (facingRight == false && dir.x > 0)
         {
             Flip();
         }
-        else if(facingRight && dir.x < 0)
+        else if (facingRight && dir.x < 0)
         {
             Flip();
         }
@@ -89,12 +89,12 @@ public class PlayerController : MonoBehaviour
             {
                 playerBody.velocity = Vector2.up * jumpPower;
                 extraJumps--;
-                Debug.Log("Double jump");
+                //Debug.Log("Double jump");
             }
             else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && IsGrounded())
             {
                 playerBody.velocity = Vector2.up * jumpPower;
-                Debug.Log("jump");
+                //Debug.Log("jump");
             }
         }
         else if (isFlipped == true)
@@ -108,12 +108,12 @@ public class PlayerController : MonoBehaviour
             {
                 playerBody.velocity = Vector2.down * jumpPower;
                 extraJumps--;
-                Debug.Log("Double jump");
+                //Debug.Log("Double jump");
             }
             else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && FlippedIsGrounded())
             {
                 playerBody.velocity = Vector2.down * jumpPower;
-                Debug.Log("jump");
+                //Debug.Log("jump");
             }
         }
     }
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
     void GravityFlip()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl) && (IsGrounded() || FlippedIsGrounded()))
-        {   
+        {
             playerBody.gravityScale *= -1;
             Vector3 vertScaler = transform.localScale;
             vertScaler.y *= -1;
@@ -147,8 +147,8 @@ public class PlayerController : MonoBehaviour
         int numOfHearts = hearts.Length;
         float heartStep = _maxHP / numOfHearts;
         int numOfVisibleHearts = Mathf.CeilToInt(_curHP / heartStep);
-        
-        for(int i = 0; i < numOfVisibleHearts; i++)
+
+        for (int i = 0; i < numOfVisibleHearts; i++)
         {
             hearts[i].SetBool("IsVisible", true);
         }

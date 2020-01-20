@@ -20,7 +20,6 @@ public class Points : MonoBehaviour
         {
             playerController.points++;
             text.text = "Points: " + playerController.points.ToString();
-            Debug.Log(playerController.points);
             this.gameObject.SetActive(false);
             winText.text += "\n\n Points collected: " + playerController.points.ToString();
         }

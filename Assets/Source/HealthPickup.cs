@@ -15,8 +15,8 @@ public class HealthPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player") && playerController.playerHP < playerController.maxHP)
         {
-                playerController.playerHP++;
-                this.gameObject.SetActive(false);
+            playerController.playerHP++;
+            this.gameObject.SetActive(false);
         }
     }
 }
