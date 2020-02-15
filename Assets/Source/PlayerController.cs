@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask platformsLayerMask;
 
-    private Rigidbody2D playerBody;
+    [HideInInspector] public Rigidbody2D playerBody;
     public BoxCollider2D boxCollider2D;
 
     public float speed = 0.0f;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator[] hearts;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public int points = 0;
-    private bool isFlipped = false;
+    [HideInInspector] public bool isFlipped = false;
     //[SerializeField] private float dashPower = 0.0f;
     //public Sprite fullHeart;
 
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GravityFlip()
+    public void GravityFlip()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl) && (IsGrounded() || FlippedIsGrounded()))
         {

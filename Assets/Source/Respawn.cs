@@ -21,6 +21,14 @@ public class Respawn : MonoBehaviour
     {
         if (triggerEntered)
         {
+            //if (playerController.isFlipped == true)
+            //{
+            //    playerController.playerBody.gravityScale *= -1;
+            //    Vector3 vertScaler = transform.localScale;
+            //    vertScaler.y *= -1;
+            //    playerController.transform.localScale = vertScaler;
+            //    playerController.isFlipped = !playerController.isFlipped;
+            //}
             player.transform.position = respawnPoint.transform.position;
             playerController.playerHP--;
             triggerEntered = false;
